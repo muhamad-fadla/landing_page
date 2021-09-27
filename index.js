@@ -22,7 +22,7 @@ app.use(dnsPrefetchControl({ allow: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 
-var IS_PRUDUCTION = true;
+var IS_PRUDUCTION = false;
 
 app.get('/', (req, res) => {
 
