@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bits.my-topup.store/sitemap.xml
+Sitemap: https://www.my-topup.store/sitemap.xml
