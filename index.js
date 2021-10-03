@@ -17,8 +17,8 @@ function getUrls(){
 	];
 }
 
-app.set('env', 'production')
-app.set('cache', true)
+// app.set('env', 'production')
+// app.set('cache', true)
 
 ViewEngine(app);
 

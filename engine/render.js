@@ -18,7 +18,7 @@ let Component = ($, $template) => {
 
 	$('x-include').each(function(i){
 
-		let raw = fs.readFileSync("./../views/" + $(this).attr('to') + '.htm').toString();
+		let raw = fs.readFileSync("./views/" + $(this).attr('to') + '.htm').toString();
 
 		$component = cheerio.load(raw);
 
@@ -73,7 +73,7 @@ const Engine = (filepath, opts, callback) => {
 
 
 module.exports = function Render(app){
-	app.set('views', './views');
+	app.set('views', require('path').join(__dirname, '/../views'));
 	app.set('view engine', 'htm');
 
 	app.engine('htm', Engine);
