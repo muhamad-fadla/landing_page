@@ -18,7 +18,7 @@ let Component = ($, $template) => {
 
 	$('x-include').each(function(i){
 
-		let raw = fs.readFileSync("./views/" + $(this).attr('to') + '.htm').toString();
+		let raw = fs.readFileSync("./../views/" + $(this).attr('to') + '.htm').toString();
 
 		$component = cheerio.load(raw);
 
