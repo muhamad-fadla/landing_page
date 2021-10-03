@@ -4,6 +4,7 @@ const dnsPrefetchControl = require('dns-prefetch-control')
 const fs = require('fs')
 const app = express();
 const path = require('path')
+const ViewEngine = require('./engine/render.js');
 
 function getUrls(){
 	return [
@@ -16,31 +17,30 @@ function getUrls(){
 	];
 }
 
+app.set('env', 'production')
+app.set('cache', true)
+
+ViewEngine(app);
+
 app.use(expressSitemapXml(getUrls, 'https://my-topup.store'))
 app.use(dnsPrefetchControl({ allow: true }))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-const route = function route(path_url){
-	return path.join(__dirname, `views/${path_url}.${IS_PRUDUCTION ? 'min.' : ''}html`)
+console.log(app.get('env'))
+
+const route = function Route(url, viewPath, data = {}){
+	app.get(url, (req,res) => res.render(viewPath));
 }
 
+route('/', 'index', {name: 'bambank'});
 
-var IS_PRUDUCTION = false;
+route('/terms-of-services', 'term-of-services/index');
 
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, `views/index${IS_PRUDUCTION ? '.min' : ''}.html`));
-});
+route('/contact', 'contact/index')
 
-app.get('/services/:dir/:sub',(req,res) => {
-	if(fs.existsSync(route('services/'+req.params.dir.toLowerCase() + '/' + req.params.sub.toLowerCase()))){
-		res.sendFile(route('services/'+req.params.dir.toLowerCase() + '/' + req.params.sub.toLowerCase()));
-	}else{
-		res.send('not found')
-	}
-})
+route('/services/social-media-engagement', 'services/sme')
 
-app.get('/***', (req,res) => res.send('ok'))
 
 const port = process.env.PORT || 3000;
 

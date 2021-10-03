@@ -1,0 +1,54 @@
+<!--jQuery-->
+<script src="https://www.my-topup.store/assets/js/jquery-3.5.0.min.js"></script>
+<!--Popper js-->
+<script src="https://www.my-topup.store/assets/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="https://www.my-topup.store/assets/js/bootstrap.min.js"></script>	
+<!--wow js-->
+<script src="https://www.my-topup.store/assets/js/wow.min.js"></script>
+
+<script defer>
+    	(function(window, $){
+    		'use strict';
+
+    		$(document).ready(function(){
+			    // 1. fixed navbar
+			    $(window).on( 'scroll', function () {
+			        // checks if window is scrolled more than 500px, adds/removes solid class
+			        if ($(this).scrollTop() > 60) {
+			            $('.navbar').addClass('affix');
+			        } else {
+			            $('.navbar').removeClass('affix');
+			        }
+			    });
+
+
+			    // 2. page scrolling feature - requires jQuery Easing plugin
+			    $(function() {
+			        $(document).on('click', 'a.page-scroll', function(event) {
+			            var $anchor = $(this);
+			            $('html, body').stop().animate({
+			                scrollTop: $($anchor.attr('href')).offset().top-60
+			            }, 900, 'easeInOutExpo');
+			            event.preventDefault();
+			        });
+			    });
+
+			    // 3. closes the responsive menu on menu item click
+			    $(".navbar-nav li a").on("click", function(event) {
+			        if (!$(this).parent().hasClass('dropdown'))
+			            $(".navbar-collapse").collapse('hide');
+			    }); 
+
+			    // 11. wow js
+			    function wowAnimation(){
+			        new WOW({
+			            offset: 100,
+			            mobile: true
+			        }).init()
+			    }
+			    wowAnimation()
+    		});
+    		
+    	})(window, jQuery)
+    </script>
