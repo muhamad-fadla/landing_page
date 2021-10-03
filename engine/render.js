@@ -46,6 +46,8 @@ const Engine = (filepath, opts, callback) => {
 		return callback(null, storage['cached'][filepath]);
 	}
 
+	console.log(filepath)
+
 	fs.readFile(filepath, (err, raw) => {
 		if(err) callback(err);
 
