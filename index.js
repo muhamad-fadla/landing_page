@@ -17,9 +17,9 @@ function getUrls(){
 	];
 }
 
-// app.set('env', 'production')
-// app.set('cache', true)
-
+app.set('env', 'production')
+app.set('cache', true)
+app.disable('x-powered-by')
 ViewEngine(app);
 
 app.use(expressSitemapXml(getUrls, 'https://my-topup.store'))
